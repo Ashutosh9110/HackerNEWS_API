@@ -1,0 +1,7 @@
+python -m venv .venv
+.venv\Scripts\activate
+
+this is how you create virtual environment in python
+
+Creating a Django project: 
+django-admin startproject DeutNet
