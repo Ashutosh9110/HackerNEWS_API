@@ -11,7 +11,9 @@ const NewsList = () => {
     const fetchStories = async () => {
       try {
         setLoading(true);
-        const response = await axios.get('http://127.0.0.1:8000/api/top-stories/');
+        // Use relative URL for production or environment variable for development
+        const apiUrl = process.env.REACT_APP_API_URL || '/api/top-stories/';
+        const response = await axios.get(apiUrl);
         setStories(response.data);
         setLoading(false);
       } catch (err) {

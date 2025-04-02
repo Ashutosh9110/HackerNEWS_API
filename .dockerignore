@@ -1,0 +1,17 @@
+.git
+.gitignore
+.venv
+__pycache__
+*.pyc
+*.pyo
+*.pyd
+.Python
+node_modules
+npm-debug.log
+Dockerfile*
+docker-compose*
+.dockerignore
+README.md
+frontend/build
+frontend/node_modules
+db.sqlite3 
