@@ -8,3 +8,18 @@ import '@testing-library/jest-dom';
 jest.mock('axios', () => ({
   get: jest.fn()
 }));
+
+// Completely suppress console errors during tests to make output cleaner
+const originalError = console.error;
+beforeAll(() => {
+  console.error = jest.fn();
+});
+
+afterAll(() => {
+  console.error = originalError;
+});
+
+// Clear all mocks automatically between tests
+beforeEach(() => {
+  jest.clearAllMocks();
+});

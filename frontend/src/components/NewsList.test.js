@@ -3,20 +3,27 @@ import { render, screen, waitFor, act } from '@testing-library/react';
 import NewsList from './NewsList';
 
 // Mock axios
-jest.mock('axios', () => ({
-  get: jest.fn()
-}));
+jest.mock('axios');
 
 // Import axios after mocking
-const axios = require('axios');
+import axios from 'axios';
 
 describe('NewsList Component', () => {
   beforeEach(() => {
     jest.clearAllMocks();
   });
 
-  test('displays loading state initially', () => {
+  test('displays loading state initially', async () => {
+    // Mock axios to return a promise that doesn't resolve immediately
+    axios.get.mockImplementation(() => new Promise(resolve => {
+      setTimeout(() => {
+        resolve({ data: [] });
+      }, 100);
+    }));
+
     render(<NewsList />);
+    
+    // The component should initially show loading
     expect(screen.getByText(/loading top stories/i)).toBeInTheDocument();
   });
 
@@ -39,29 +46,28 @@ describe('NewsList Component', () => {
       }
     ];
     
-    axios.get.mockResolvedValueOnce({ data: mockStories });
+    axios.get.mockResolvedValue({ data: mockStories });
 
-    await act(async () => {
-      render(<NewsList />);
-    });
+    // Render component
+    render(<NewsList />);
 
     // Wait for the stories to be loaded
     await waitFor(() => {
       expect(screen.getByText('HackerNews Top 10 Stories')).toBeInTheDocument();
-      expect(screen.getByText('Test Story 1')).toBeInTheDocument();
-      expect(screen.getByText('By: Rahul Singh')).toBeInTheDocument();
-      expect(screen.getByText('Score: 100')).toBeInTheDocument();
-      expect(screen.getByText('Test Story 2')).toBeInTheDocument();
     });
+    
+    expect(screen.getByText('Test Story 1')).toBeInTheDocument();
+    expect(screen.getByText('By: Rahul Singh')).toBeInTheDocument();
+    expect(screen.getByText('Score: 100')).toBeInTheDocument();
+    expect(screen.getByText('Test Story 2')).toBeInTheDocument();
   });
 
   test('displays error message when API request fails', async () => {
     // Mock error response
-    axios.get.mockRejectedValueOnce(new Error('Network Error'));
+    axios.get.mockRejectedValue(new Error('Network Error'));
 
-    await act(async () => {
-      render(<NewsList />);
-    });
+    // Render component
+    render(<NewsList />);
 
     // Wait for the error to be displayed
     await waitFor(() => {

@@ -31,7 +31,7 @@ hackernews/
    ```
 
 2. Activate the virtual environment:
-   - Windows: `.venv\Scripts\activate`
+   Windows: `.venv\Scripts\activate`
 
 3. Install required packages:
    ```
@@ -53,16 +53,19 @@ hackernews/
 ### Frontend (React)
 
 1. Navigate to the frontend directory:
+
    ```
    cd frontend
    ```
 
 2. Install dependencies:
+
    ```
    npm install
    ```
 
 3. Start the development server:
+
    ```
    npm start
    ```
@@ -71,9 +74,9 @@ hackernews/
 
 ## API Endpoints
 
-- `GET /api/top-stories/`: Returns the top 10 HackerNews stories with details including title, author, URL, score, and time.
+- `GET /api/top-stories/`: This returns the top 10 HackerNews stories with details including title, author, URL, score, and time.
 
-## Technologies Used
+## Technology Used
 
 - **Backend**: Django, Django REST Framework, Requests
 - **Frontend**: React, Axios
