@@ -21,6 +21,20 @@ hackernews/
 └── README.md            # Project documentation
 ```
 
+## Installation
+
+### Clone the Repository
+
+1. Clone the repository using Git:
+   ```
+   git clone https://github.com/Ashutosh9110/HackerNEWS_API.git
+   ```
+
+2. Navigate to the project directory:
+   ```
+   cd HackerNEWS_API
+   ```
+
 ## Setup Instructions
 
 ### Backend (Django)
